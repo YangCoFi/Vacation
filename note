@@ -1,0 +1,66 @@
+下面是遍历Map的四种方法:
+public static void main(String[] args) {
+
+
+  Map<String, String> map = new HashMap<String, String>();
+  map.put("1", "value1");
+  map.put("2", "value2");
+  map.put("3", "value3");
+
+  //第一种：普遍使用，二次取值
+  System.out.println("通过Map.keySet遍历key和value：");
+  for (String key : map.keySet()) {
+   System.out.println("key= "+ key + " and value= " + map.get(key));
+  }
+
+  //第二种
+  System.out.println("通过Map.entrySet使用iterator遍历key和value：");
+  Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+  while (it.hasNext()) {
+   Map.Entry<String, String> entry = it.next();
+   System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+  }
+
+  //第三种：推荐，尤其是容量大时
+  System.out.println("通过Map.entrySet遍历key和value");
+  for (Map.Entry<String, String> entry : map.entrySet()) {
+   System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+  }
+
+  //第四种
+  System.out.println("通过Map.values()遍历所有的value，但不能遍历key");
+  for (String v : map.values()) {
+   System.out.println("value= " + v);
+  }
+ }
+
+
+
+
+
+
+//1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等；如果作用于引用类型的变量，则比较的是所指向的对象的地址！
+//　2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量。如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址；诸如String等类对equals方法进行了重写的话，比较的是所指向的对象的内容。
+
+/**
+ * public class MyHashMap<K> extends HashMap<K,String> {
+ *
+ *     /**
+ *      * 使用HashMap中containsKey判断key是否已经存在
+ *      * @param key
+ *      * @param value
+ *      * @return
+ *
+ *       *@Override
+ *  *public String put(K key,String value){
+ *         *String newV=value;
+ *         *if(containsKey(key)){
+ *         *String oldV=get(key);
+ *         *newV=oldV+"---"+newV;
+ *         *}
+ *         *return super.put(key,newV);
+ *         *}
+ *         *}
+ *  * */
+
+//LinkedHashMap：LinkedHashMap简单来说是一个有序的HashMap，其是HashMap的子类，HashMap是无序的。接下来我们通过对比分析HashMap和LinkedHashMap来了解一下LinkedHashMap是如何实现有序的。首先HashMap及子类LinkedHashMap都提供了一个数组。
