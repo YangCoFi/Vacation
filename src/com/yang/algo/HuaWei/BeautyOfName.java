@@ -9,9 +9,6 @@ package com.yang.algo.HuaWei;
  * @Date 2019/8/17 9:52
  **/
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 /**
  * .InputStream、OutputStream
  * 处理字节流的抽象类
@@ -38,16 +35,17 @@ import java.util.Arrays;
 public class BeautyOfName{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        StringBuilder sb = new StringBuilder();
         while(sc.hasNext()){
-            sb.append(sc.nextLine() + ",");
+            int n = sc.nextInt();
+            String[] str = new String[n];
+            for(int i = 0; i < n; i ++){
+                str[i] = sc.next();
+            }
+            for(int i = 0; i < str.length; i ++){
+                System.out.println(calculateBeauty(str[i]));
+            }
         }
-        sb.substring(0, sb.length() - 1);
-        String[] strs = sb.toString().split(",");
-        for(int i = 0; i < strs.length; i ++){
-            System.out.println(calculateBeauty(strs[i]));
-        }
+
     }
 
     public static int calculateBeauty(String str){
